@@ -1,0 +1,9 @@
+server:
+  port: 8081
+
+spring:
+  mail:
+    default-encoding: UTF-8
+    host: smtp.startdt.com
+    username: Maleon@startdt.com
+    password: Startdt0401
