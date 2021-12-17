@@ -25,8 +25,11 @@ public class HBaseTableCreate {
     public static void main(String[] args) throws IOException {
         Configuration configuration = HBaseConfiguration.create();
 //        configuration.set("hbase.zookeeper.quorum", "172.16.11.132:2181,172.16.11.133:2181,172.16.11.134:2181");
-        configuration.set("hbase.zookeeper.quorum", "bz-test-datasimba-cdh-02:2181,bz-test-datasimba-cdh-03:2181,bz-test-datasimba-cdh-04:2181");
+//        configuration.set("hbase.zookeeper.quorum", "bz-test-datasimba-cdh-02:2181,bz-test-datasimba-cdh-03:2181,bz-test-datasimba-cdh-04:2181");
+        configuration.set("hbase.zookeeper.quorum", "172.16.87.251,172.16.87.252,172.16.87.253:2181");
+//        configuration.set("hbase.zookeeper.quorum", "123.60.37.235:13881");
         Connection connection = ConnectionFactory.createConnection(configuration);
+
         Admin admin = connection.getAdmin();
 //        TableName student = TableName.valueOf("studentInfo");
 //        if(admin.tableExists(student)){
@@ -34,28 +37,28 @@ public class HBaseTableCreate {
 //            admin.deleteTable(student);
 //        }
 
-        TableName student = TableName.valueOf("maleon:studentInfo");
+//        TableName student = TableName.valueOf("maleon:studentInfo");
+//
+//        ColumnFamilyDescriptorBuilder columnFamilyDescriptorBuilder = ColumnFamilyDescriptorBuilder.newBuilder("class".getBytes(StandardCharsets.UTF_8));
+//        ColumnFamilyDescriptor columnFamilyDescriptor = columnFamilyDescriptorBuilder.build();
+//
+//        ColumnFamilyDescriptorBuilder columnFamilyDescriptorBuilder1 = ColumnFamilyDescriptorBuilder.newBuilder("info".getBytes(StandardCharsets.UTF_8));
+//        ColumnFamilyDescriptor columnFamilyDescriptor1 = columnFamilyDescriptorBuilder1.build();
 
-        ColumnFamilyDescriptorBuilder columnFamilyDescriptorBuilder = ColumnFamilyDescriptorBuilder.newBuilder("class".getBytes(StandardCharsets.UTF_8));
-        ColumnFamilyDescriptor columnFamilyDescriptor = columnFamilyDescriptorBuilder.build();
-
-        ColumnFamilyDescriptorBuilder columnFamilyDescriptorBuilder1 = ColumnFamilyDescriptorBuilder.newBuilder("info".getBytes(StandardCharsets.UTF_8));
-        ColumnFamilyDescriptor columnFamilyDescriptor1 = columnFamilyDescriptorBuilder1.build();
-
-
-        TableDescriptor tableDescriptor = TableDescriptorBuilder.newBuilder(student).setColumnFamily(columnFamilyDescriptor).setColumnFamily(columnFamilyDescriptor1).build();
-        admin.createTable(tableDescriptor);
-
-        Put put = new Put(Bytes.toBytes("0001"));
-        put.addColumn(Bytes.toBytes("class"),Bytes.toBytes("math"),Bytes.toBytes("100"));
-        put.addColumn(Bytes.toBytes("class"),Bytes.toBytes("english"),Bytes.toBytes("90"));
-        put.addColumn(Bytes.toBytes("class"),Bytes.toBytes("chemistry"),Bytes.toBytes("80"));
-        put.addColumn(Bytes.toBytes("class"),Bytes.toBytes("physics"),Bytes.toBytes("95"));
-        put.addColumn(Bytes.toBytes("info"),Bytes.toBytes("age"),Bytes.toBytes("20"));
-        put.addColumn(Bytes.toBytes("info"),Bytes.toBytes("gender"),Bytes.toBytes("male"));
-        put.addColumn(Bytes.toBytes("info"),Bytes.toBytes("name"),Bytes.toBytes("tester"));
-        put.addColumn(Bytes.toBytes("info"),Bytes.toBytes("phone"),Bytes.toBytes("18589383037"));
-        connection.getTable(student).put(put);
+//
+//        TableDescriptor tableDescriptor = TableDescriptorBuilder.newBuilder(student).setColumnFamily(columnFamilyDescriptor).setColumnFamily(columnFamilyDescriptor1).build();
+//        admin.createTable(tableDescriptor);
+//
+//        Put put = new Put(Bytes.toBytes("0001"));
+//        put.addColumn(Bytes.toBytes("class"),Bytes.toBytes("math"),Bytes.toBytes("100"));
+//        put.addColumn(Bytes.toBytes("class"),Bytes.toBytes("english"),Bytes.toBytes("90"));
+//        put.addColumn(Bytes.toBytes("class"),Bytes.toBytes("chemistry"),Bytes.toBytes("80"));
+//        put.addColumn(Bytes.toBytes("class"),Bytes.toBytes("physics"),Bytes.toBytes("95"));
+//        put.addColumn(Bytes.toBytes("info"),Bytes.toBytes("age"),Bytes.toBytes("20"));
+//        put.addColumn(Bytes.toBytes("info"),Bytes.toBytes("gender"),Bytes.toBytes("male"));
+//        put.addColumn(Bytes.toBytes("info"),Bytes.toBytes("name"),Bytes.toBytes("tester"));
+//        put.addColumn(Bytes.toBytes("info"),Bytes.toBytes("phone"),Bytes.toBytes("18589383037"));
+//        connection.getTable(student).put(put);
 
     }
 }
