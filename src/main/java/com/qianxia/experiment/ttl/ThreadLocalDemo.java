@@ -2,6 +2,8 @@ package com.qianxia.experiment.ttl;
 
 import com.alibaba.ttl.TransmittableThreadLocal;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -33,6 +35,14 @@ public class ThreadLocalDemo {
             threadPoolExecutor.submit(() -> System.out.println(transmittableThreadLocal.get()));
         }
         threadPoolExecutor.shutdown();
+
+        List<Integer> list = new ArrayList<>();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+        list.parallelStream().forEach(number ->
+                System.out.println(transmittableThreadLocal.get()));
     }
 
 }
